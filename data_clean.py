@@ -26,3 +26,25 @@ class clean_data():
         for i in nan_columns:
             sns.histplot(data=df_cols,x=df_cols[i],bins=25)
             plt.show()
+            
+    def filling_missing(self,df):
+        df_num = df.select_dtypes(include=["float","int"])
+        normal_dist = []
+        skewed = []
+        for i in df_num.columns:
+            if df_num[i].skew() < 0.5 and df_num[i].skew() > -0.5:
+                normal_dist.append(i)
+            else:
+                skewed.append(i)
+        for t in normal_dist:
+            df[t].fillna(df[t].mean(),inplace=True)
+        for j in skewed:
+            df[j].fillna(df[j].median(),inplace=True)
+        
+        df_cat = df.select_dtypes(include=["object"])
+        for n in df_cat.columns:
+            df[n].fillna(df[n].mode()[0],inplace=True)
+            
+        df_date = df.select_dtypes(include=["datetime64[ns]"])
+        for x in df_date.columns:
+            df[x].ffill(axis=0,inplace=True)
