@@ -13,3 +13,8 @@ class clean_data():
         df.drop(column_30percent,axis=1,inplace=True)
         
         return df 
+    
+    def percentage_missing(self,df):
+        missings = df.isnull().sum()*100/len(df)
+        
+        return missings
