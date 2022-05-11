@@ -48,3 +48,14 @@ class clean_data():
         df_date = df.select_dtypes(include=["datetime64[ns]"])
         for x in df_date.columns:
             df[x].ffill(axis=0,inplace=True)
+            
+    def check_outliers(self,df):
+        numerical_columns = df.select_dtypes(include=["float","int"]).columns.tolist()
+        for i in numerical_columns:
+            sns.boxplot(data=df,x=df[i])
+            plt.show()
+            
+    def fix_outliers(self,df,column):
+        df[column] = np.where(df[column] > df[column].quantile(0.95), df[column].median(),df[column])
+    
+        return df[column]
