@@ -18,3 +18,11 @@ class clean_data():
         missings = df.isnull().sum()*100/len(df)
         
         return missings
+    
+    def normality_test (self,df):
+        numerical_columns = df.select_dtypes(include=["float","int"]).columns.tolist()
+        df_cols = df[numerical_columns]
+        nan_columns = [i for i in df_cols.columns if df_cols[i].isna().sum() > 0]
+        for i in nan_columns:
+            sns.histplot(data=df_cols,x=df_cols[i],bins=25)
+            plt.show()
