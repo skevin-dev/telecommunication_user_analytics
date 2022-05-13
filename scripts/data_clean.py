@@ -37,9 +37,9 @@ class clean_data():
             else:
                 skewed.append(i)
         for t in normal_dist:
-            df[t].fillna(df[t].mean(),inplace=True)
+            df[t].fillna(df[t].median(),inplace=True)
         for j in skewed:
-            df[j].fillna(df[j].median(),inplace=True)
+            df[j].fillna(df[j].mean(),inplace=True)
         
         df_cat = df.select_dtypes(include=["object"])
         for n in df_cat.columns:
