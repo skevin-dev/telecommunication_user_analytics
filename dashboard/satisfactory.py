@@ -6,4 +6,7 @@ def app():
 
     st.markdown('**This is the `User Satisfaction` of this the user analysis multi page.**')
 
-    st.markdown('**In this app, we will see the data and some visualization of user engagement.**')
+    st.markdown('**In this app, we will see the data of satisfactory analysis.**')
+
+    df = pd.read_csv('./data/satsf.csv')
+    st.write(df)
