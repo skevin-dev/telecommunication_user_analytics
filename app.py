@@ -4,9 +4,9 @@ from dashboard import experience, overview, satisfactory,engangement # import yo
 
 app = MultiApp()
 
-st.sidebar.markdown('# **Tellco Customers Analysis**')
+st.sidebar.markdown('# **Tellecommunication User Analysis**')
 st.sidebar.markdown("""
-This project is all about analyzing TellCo's user and find out whether it is worth buying or selling.
+This project is all about analyzing Tellecommunication's user and find out whether it is worth buying or selling.
 """)
 
 # Add all your application here
